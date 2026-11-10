@@ -1,0 +1,12 @@
+#!/bin/bash
+# Só as legendas do trailer (fundo preto e branco).
+cd "$(dirname "$0")/.."
+B="/mnt/c/Program Files (x86)/Steam/steamapps/common/Garfield Kart - Furious Racing/BepInEx"
+export CINE=1 CMDMAX=4000
+tools/fechar.sh >/dev/null 2>&1
+timeout 130 tools/jogo.sh || exit 1
+timeout 2400 tools/cmd.sh "aguarda MenuHDEngagementScreen" "espera 1" \
+  "fundo preto" "q 3" "gravar leg_pista_preto" "q 1" "legenda 180 centro 138 VULCÃO FERVENTE | NOVA PISTA" "q 182" "parar" "fundo branco" "q 3" "gravar leg_pista_branco" "q 1" "legenda 180 centro 138 VULCÃO FERVENTE | NOVA PISTA" "q 182" "parar" "fundo preto" "q 3" "gravar leg_salto_preto" "q 1" "legenda 150 centro 109 SALTE SOBRE A LAVA!" "q 152" "parar" "fundo branco" "q 3" "gravar leg_salto_branco" "q 1" "legenda 150 centro 109 SALTE SOBRE A LAVA!" "q 152" "parar" "fundo preto" "q 3" "gravar leg_ovo_preto" "q 1" "legenda 160 centro 150 O OVO! | NOVO ITEM" "q 162" "parar" "fundo branco" "q 3" "gravar leg_ovo_branco" "q 1" "legenda 160 centro 150 O OVO! | NOVO ITEM" "q 162" "parar" "fundo preto" "q 3" "gravar leg_acertou_preto" "q 1" "legenda 130 centro 115 ACERTOU? ESTOUROU!" "q 132" "parar" "fundo branco" "q 3" "gravar leg_acertou_branco" "q 1" "legenda 130 centro 115 ACERTOU? ESTOUROU!" "q 132" "parar" "fundo preto" "q 3" "gravar leg_escorrega_preto" "q 1" "legenda 160 centro 98 TODO MUNDO ESCORREGA!" "q 162" "parar" "fundo branco" "q 3" "gravar leg_escorrega_branco" "q 1" "legenda 160 centro 98 TODO MUNDO ESCORREGA!" "q 162" "parar" "fundo preto" "q 3" "gravar leg_200_preto" "q 1" "legenda 170 centro 150 200cc | NOVO MODO" "q 172" "parar" "fundo branco" "q 3" "gravar leg_200_branco" "q 1" "legenda 170 centro 150 200cc | NOVO MODO" "q 172" "parar" "fundo preto" "q 3" "gravar leg_ggp_preto" "q 1" "legenda 170 centro 129 GRAND GRAND PRIX | NOVO MODO" "q 172" "parar" "fundo branco" "q 3" "gravar leg_ggp_branco" "q 1" "legenda 170 centro 129 GRAND GRAND PRIX | NOVO MODO" "q 172" "parar" "fundo preto" "q 3" "gravar leg_campeao_preto" "q 1" "legenda 210 centro 98 16 PISTAS. 1 CAMPEÃO. | 4 COPAS NUMA SÓ CORRIDA" "q 212" "parar" "fundo branco" "q 3" "gravar leg_campeao_branco" "q 1" "legenda 210 centro 98 16 PISTAS. 1 CAMPEÃO. | 4 COPAS NUMA SÓ CORRIDA" "q 212" "parar" "fundo nada"
+tools/fechar.sh >/dev/null 2>&1
+for d in "$B/gkcine/"*; do n=$(basename "$d"); rm -rf "cine/menu/$n"; mv "$d" cine/menu/; done
+rm -rf cine/legendas; .venv/bin/python tools/legendas_alfa.py

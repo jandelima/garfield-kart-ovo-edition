@@ -1,0 +1,15 @@
+# código descompilado e dados extraídos do jogo (propriedade da Microids) — nunca publicar
+decomp/
+scenes/
+assets/vulcao_src/
+assets/orig_150cc.png
+# binários e downloads de terceiros
+build/
+downloads/
+# máquina local
+backup/
+.venv/
+__pycache__/
+fotos/
+# gravações e montagem do trailer (GB de quadros + áudio do jogo)
+cine/
